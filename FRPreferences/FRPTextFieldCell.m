@@ -35,8 +35,28 @@
     self.textField.returnKeyType = UIReturnKeyDone;
     cell.accessoryView = self.textField;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 35.0f)];
+    toolbar.barStyle=UIBarStyleBlackOpaque;
+    
+    // Create a flexible space to align buttons to the right
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    // Create a cancel button to dismiss the keyboard
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
+    
+    // Add buttons to the toolbar
+    [toolbar setItems:[NSArray arrayWithObjects:flexibleSpace, barButtonItem, nil]];
+    
+    // Set the toolbar as accessory view of an UITextField object
+    self.textField.inputAccessoryView = toolbar;
 
     return cell;
+}
+
+-(void)done {
+    [self.textField resignFirstResponder];
+    self.valueChanged(self.textField);
 }
 
 -(void)textFieldChanged:(UITextField *)textField {
@@ -47,6 +67,7 @@
 
 - (BOOL)textFieldShouldReturn:(id)textField {
     [textField resignFirstResponder];
+    self.valueChanged(textField);
     return NO;
 }
 

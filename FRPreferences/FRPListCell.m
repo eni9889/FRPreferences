@@ -30,7 +30,7 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     if ([self.values containsObject:setting.value])
         cell.detailTextLabel.text = [self.items objectAtIndex:[self.values indexOfObject:setting.value]];
-
+    
     return cell;
 }
 

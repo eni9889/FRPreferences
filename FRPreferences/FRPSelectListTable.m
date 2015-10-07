@@ -57,7 +57,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.itemChanged([listItems objectAtIndex:[indexPath row]]);
-
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     for (UITableViewCell *cell in tableView.visibleCells) {
         cell.accessoryType = UITableViewCellAccessoryNone;
